@@ -1,0 +1,18 @@
+{
+  "name": "kyoya-de/tragopan",
+  "description": "Tragopan is a tool create self-signed certificates for using with SSL/TLS, based on your own CA.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Stefan Krenz",
+      "email": "info@kyoya.de"
+    }
+  ],
+  "require": {
+    "silex/silex": "^2.0",
+    "symfony/process": "^3.1",
+    "piwik/ini": "^1.0"
+  }
+}
