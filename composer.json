@@ -1,4 +1,5 @@
 {
+  "type": "project",
   "name": "kyoya-de/tragopan",
   "description": "Tragopan is a tool create self-signed certificates for using with SSL/TLS, based on your own CA.",
   "minimum-stability": "stable",
