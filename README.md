@@ -84,7 +84,10 @@ All of these requests will send a JSON response containing two URIs to download 
 
 ## Download the CA certificate
 To get the generated certificates working as expected you need to download the CA certificate.
-This can be done by sending a HTTP-GET request to `ttp://yourdoamin-or-ip/cert` and providing the `ca.api-key` as
+This can be done by sending a HTTP-GET request to `http://yourdoamin-or-ip/cert` and providing the `ca.api-key` as
 the HTTP header `X-CA-Api-Key`. After you have downloded the CA certificate you must install it as
 a Root Certificate Authority and fully trust it.
+```bash
+$ curl http://yourdoamin-or-ip/cert -H 'X-CA-Api-Key: IAmNotSecure'
+```
 
