@@ -28,22 +28,11 @@ class CertificatesController
         $this->validateIssueRequest($request);
 
         $issuer     = new Issuer($app);
+
         $certReq    = $request->request->get('cert');
         $hostname   = $request->request->get('host');
-        $certConfig = [
-            'cert.country'            => $certReq['country'],
-            'cert.state'              => $certReq['state'],
-            'cert.locality'           => $certReq['locality'],
-            'cert.organization'       => $certReq['organization'],
-            'cert.organizationalUnit' => $certReq['organizationalUnit'],
-            'cert.name'               => $certReq['name'],
-        ];
 
-        if (isset($certReq['email'])) {
-            $certConfig['cert.email'] = $certReq['email'];
-        }
-
-        $files = $issuer->issueCert($certConfig, $hostname);
+        $files = $issuer->issueCert($certReq, $hostname);
 
         $certDownloadId = $this->createDownloadId();
         $keyDownloadId  = $this->createDownloadId();
@@ -75,15 +64,6 @@ class CertificatesController
     public function download(Application $app, Request $request, $id)
     {
         $response = new Response('', 404);
-        if ($request->headers->has('x-ca-api-key')) {
-            if ($request->headers->get('x-ca-api-key') === $app['ca.config']['ca.api-key']) {
-                $caCertResponse = new BinaryFileResponse("{$app['ca.base_dir']}/cacert.pem");
-                $caCertResponse->prepare($request);
-                $caCertResponse->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'cacert.pem');
-
-                return $caCertResponse;
-            }
-        }
 
         /** @var FilesystemAdapter $cache */
         $cache     = $app['cache'];
@@ -96,6 +76,20 @@ class CertificatesController
             $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, basename($filename));
 
             $cache->deleteItem("download.{$id}");
+        }
+
+        return $response;
+    }
+
+    public function downloadCA(Application $app, Request $request)
+    {
+        $response = new Response('', 404);
+        if ($request->headers->has('x-ca-api-key')) {
+            if ($request->headers->get('x-ca-api-key') === $app['ca.config']['ca.api-key']) {
+                $response = new BinaryFileResponse("{$app['ca.base_dir']}/cacert.pem");
+                $response->prepare($request);
+                $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT, 'cacert.pem');
+            }
         }
 
         return $response;

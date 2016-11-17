@@ -68,6 +68,7 @@ class Application extends BaseApplication
     public function addRoutes()
     {
         $this->get('/cert/{id}', [$this['controller.certificates'], 'download'])->bind('downloadCert');
+        $this->get('/cert', [$this['controller.certificates'], 'downloadCA'])->bind('downloadCACert');
         $this->post('/cert', [$this['controller.certificates'], 'issueNew'])->bind('issueCert');
         $this->get('/', function() {
             return new Response('<h2>Welcome to <em>Tragopan</em></h2><blockquote>Nothing to show or to do here!</blockquote>');
