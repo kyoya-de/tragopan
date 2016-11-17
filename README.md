@@ -1,4 +1,4 @@
-# tragopan
+# Tragopan
 Tragopan is a tool create self-signed certificates for using with SSL/TLS, based on your own CA.
 All issued certificates are valid for the given hostname and the next level of sub-domains.
 
