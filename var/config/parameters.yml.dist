@@ -1,0 +1,12 @@
+config:
+  ca.country:            US
+  ca.state:              Maryland
+  ca.locality:           Baltimore
+  ca.organization:       Company CA, My Awesome Organization
+  ca.organizationalUnit: Server Research Department
+  ca.name:               Company CA
+  ca.email:              info@my-awesome-organization.com
+
+  ca.secret:             IAmNotVerySecure
+
+  ca.api-key:            IAmNotVerySecure

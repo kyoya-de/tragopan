@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use KyoyaDe\Tragopan\Command\CreateCACommand;
+use Symfony\Component\Console\Application;
+
+include __DIR__ . '/../vendor/autoload.php';
+
+$container = new \KyoyaDe\Tragopan\Application([
+    'debug' => true,
+    'kernel.root_dir' => dirname(__DIR__),
+]);
+$container->boot();
+
+$app = new Application('Tragopan console', '1.0.0');
+$app->add(new CreateCACommand(null, $container));
+$app->run();
