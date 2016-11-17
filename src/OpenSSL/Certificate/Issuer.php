@@ -17,7 +17,7 @@ class Issuer
     public function issueCert($certConfig, $hostname)
     {
         $certDir = "{$this->container['cert.base_dir']}/{$hostname}";
-        if (!@mkdir($certDir) && !is_dir($certDir)) {
+        if (!@mkdir($certDir, 0770, true) && !is_dir($certDir)) {
             throw new \RuntimeException("Can't create certification directory '{$certDir}'!");
         }
 
@@ -51,6 +51,11 @@ class Issuer
 
         $process = new Process($cmd, $certDir);
         $process->mustRun();
+
+        return [
+            'key' => "{$certDir}/serverkey.pem",
+            'cert' => "{$certDir}/servercert.pem",
+        ];
     }
 
     private function renderConfig($certConfig, $hostname)

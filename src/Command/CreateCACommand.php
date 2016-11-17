@@ -83,7 +83,7 @@ class CreateCACommand extends Command
         $confFile = $this->container['ca.base_dir'] . '/openssl-ca.cnf';
         file_put_contents($confFile, $openSslConfig);
 
-        touch("{$this->container['ca.base_dir']}/index.txr");
+        touch("{$this->container['ca.base_dir']}/index.txt");
         file_put_contents("{$this->container['ca.base_dir']}/serial.txt", "01\n");
 
         $caConfig = $this->container['ca.config'];

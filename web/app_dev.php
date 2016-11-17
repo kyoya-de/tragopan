@@ -10,6 +10,7 @@ $app = new Application(
         'kernel.cache_dir' => __DIR__ . '/../var/cache',
     ]
 );
+$app->boot();
 $app->addRoutes();
 $app->run();
 
