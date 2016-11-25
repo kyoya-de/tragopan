@@ -15,11 +15,6 @@ use Symfony\Component\Routing\Generator\UrlGenerator;
 class CertificatesController
 {
     private static $requiredFields = [
-        'country',
-        'state',
-        'locality',
-        'organization',
-        'organizationalUnit',
         'name',
     ];
 
