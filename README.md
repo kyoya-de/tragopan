@@ -65,9 +65,9 @@ $ curl http://yourdoamin-or-ip/cert -H 'Content-Type: application/json; charset=
         "country":"DE",
         "state":"Germany",
         "locality":"Berlin",
-        "organization":"Awesome+Company+CA",
-        "organizationalUnit":"Development+Special+Forces",
-        "name":"My+Awesome+VM"
+        "organization":"Awesome Company CA",
+        "organizationalUnit":"Development Special Forces",
+        "name":"My Awesome VM"
     },
     "host":"my-awesome.vm"
 }'
